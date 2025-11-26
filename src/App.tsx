@@ -1,4 +1,4 @@
-import { Toaster } from 'sonner';
+import { Toaster } from '@app/ui/blocks/sonner';
 
 import TanstackQueryProvider from './providers/TanstackQueryProviders';
 import { Routes } from './routes';

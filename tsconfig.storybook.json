@@ -1,10 +1,10 @@
 {
-    "extends": "./tsconfig.node.json",
-    "include": [
-        ".storybook/**/*.ts",
-        ".storybook/**/*.tsx"
-    ],
-    "compilerOptions": {
-        "noEmit": true
-    }
+  "extends": "./tsconfig.node.json",
+  "include": [
+    ".storybook/**/*.ts",
+    ".storybook/**/*.tsx"
+  ],
+  "compilerOptions": {
+    "noEmit": true
+  }
 }
