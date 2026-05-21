@@ -1,4 +1,6 @@
-// For more info, see https://github.com/storybookjs/eslint-plugin-storybook#configuration-flat-config-format
+// eslint.config.js — ESLint v10 flat config
+// https://eslint.org/docs/latest/use/migrate-to-10.0.0
+
 import js from '@eslint/js';
 import pluginQuery from '@tanstack/eslint-plugin-query';
 import { globalIgnores } from 'eslint/config';
@@ -11,78 +13,104 @@ import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
 export default tseslint.config(
-  [
-    globalIgnores(['dist']),
-    {
-      files: ['**/*.{ts,tsx}'],
-      extends: [
-        js.configs.recommended,
-        tseslint.configs.recommendedTypeChecked,
-        tseslint.configs.stylisticTypeChecked,
-        reactHooks.configs['recommended-latest'],
-        reactRefresh.configs.vite,
-        pluginQuery.configs['flat/recommended'],
+  globalIgnores(['dist']),
+
+  {
+    files: ['**/*.{ts,tsx}'],
+
+    extends: [
+      js.configs.recommended,
+      ...tseslint.configs.recommendedTypeChecked,
+      ...tseslint.configs.stylisticTypeChecked,
+      reactHooks.configs.flat['recommended-latest'],
+      reactRefresh.configs.vite,
+      ...pluginQuery.configs['flat/recommended'],
+    ],
+
+    languageOptions: {
+      ecmaVersion: 2020,
+
+      globals: {
+        ...globals.browser,
+      },
+
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json', './tsconfig.storybook.json'],
+
+        tsconfigRootDir: import.meta.dirname,
+      },
+    },
+
+    plugins: {
+      'simple-import-sort': simpleImportSort,
+      'unused-imports': unusedImports,
+    },
+
+    rules: {
+      /*
+       * React Refresh
+       */
+      'react-refresh/only-export-components': 'off',
+
+      /*
+       * Import Sorting
+       */
+      'simple-import-sort/imports': [
+        'error',
+        {
+          groups: [
+            // External packages
+            ['^react', '^@?\\w'],
+
+            // Internal aliases
+            ['^@app/component', '^@app/hooks', '^@app/store', '^@app'],
+
+            // Styles
+            ['^.+\\.(css|scss|sass|less)$'],
+
+            // Type imports
+            ['^\\u0000?type\\b', '^.*\\btype\\b'],
+
+            // Relative imports
+            ['^\\./', '^\\.\\./'],
+          ],
+        },
       ],
 
-      languageOptions: {
-        ecmaVersion: 2020,
-        globals: {
-          ...globals.browser,
-          alert: 'off',
-          prompt: 'off',
+      'simple-import-sort/exports': 'error',
+
+      /*
+       * Unused imports
+       */
+      'unused-imports/no-unused-imports': 'error',
+
+      'unused-imports/no-unused-vars': [
+        'warn',
+        {
+          vars: 'all',
+          varsIgnorePattern: '^_',
+          args: 'after-used',
+          argsIgnorePattern: '^_',
         },
-        parserOptions: {
-          project: ['./tsconfig.node.json', './tsconfig.app.json', './tsconfig.storybook.json'],
-          tsconfigRootDir: import.meta.dirname,
-        },
+      ],
+    },
+  },
+
+  {
+    files: ['**/*.{test,spec}.{ts,tsx}', 'src/test/**/*.{ts,tsx}'],
+
+    languageOptions: {
+      globals: {
+        ...globals.browser,
+        ...globals.vitest,
       },
-      rules: {
-        'react-refresh/only-export-components': 'off',
+
+      parserOptions: {
+        project: ['./tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
       },
     },
-    {
-      plugins: {
-        'simple-import-sort': simpleImportSort,
-        'unused-imports': unusedImports,
-      },
-      rules: {
-        // 🔹 Auto-sort imports with custom grouping
-        'simple-import-sort/imports': [
-          'error',
-          {
-            groups: [
-              // 1. External libraries
-              ['^react', '^@?\\w'],
+  },
 
-              // 2. Project imports (components, hooks, store, etc.)
-              ['^@app/component', '^@app/hooks', '^@app/store', '^@app'],
-
-              // 3. CSS imports
-              ['^.+\\.(css|scss|sass|less)$'],
-
-              // 4. Type-only imports (always separate)
-              ['^\\u0000?type\\b', '^.*\\btype\\b'],
-
-              // 5. Relative imports (same folder and parent folders)
-              ['^\\./', '^\\.\\./'],
-            ],
-          },
-        ],
-
-        'simple-import-sort/exports': 'error',
-
-        'unused-imports/no-unused-imports': 'error',
-        'unused-imports/no-unused-vars': [
-          'warn',
-          {
-            vars: 'all',
-            varsIgnorePattern: '^_',
-            args: 'after-used',
-            argsIgnorePattern: '^_',
-          },
-        ],
-      },
-    },
-  ],
-  storybook.configs['flat/recommended'],
+  ...storybook.configs['flat/recommended'],
 );

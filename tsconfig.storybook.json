@@ -2,7 +2,9 @@
   "extends": "./tsconfig.node.json",
   "include": [
     ".storybook/**/*.ts",
-    ".storybook/**/*.tsx"
+    ".storybook/**/*.tsx",
+    "src/**/*.stories.ts",
+    "src/**/*.stories.tsx"
   ],
   "compilerOptions": {
     "noEmit": true
