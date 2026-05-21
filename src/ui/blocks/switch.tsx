@@ -1,25 +1,27 @@
-'use client';
-
-import * as React from 'react';
-import * as SwitchPrimitive from '@radix-ui/react-switch';
+import { Switch as SwitchPrimitive } from '@base-ui/react/switch';
 
 import { cn } from '@app/utils/className.helper';
 
-function Switch({ className, ...props }: React.ComponentProps<typeof SwitchPrimitive.Root>) {
+function Switch({
+  className,
+  size = 'default',
+  ...props
+}: SwitchPrimitive.Root.Props & {
+  size?: 'sm' | 'default';
+}) {
   return (
     <SwitchPrimitive.Root
       data-slot="switch"
+      data-size={size}
       className={cn(
-        'peer inline-flex h-[1.15rem] w-8 shrink-0 items-center rounded-full border border-neutral-200 shadow-xs transition-all outline-none focus-visible:border-neutral-950 focus-visible:ring-[3px] focus-visible:ring-neutral-950/50 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-neutral-900 data-[state=unchecked]:bg-neutral-200 dark:border-neutral-800 dark:focus-visible:border-neutral-300 dark:focus-visible:ring-neutral-300/50 dark:data-[state=checked]:bg-neutral-50 dark:dark:data-[state=unchecked]:bg-neutral-800/80 dark:data-[state=unchecked]:bg-neutral-200/80',
+        'peer group/switch border-oklch(0.922 0 0) focus-visible:border-oklch(0.708 0 0) focus-visible:ring-oklch(0.708 0 0)/50 aria-invalid:border-oklch(0.577 0.245 27.325) aria-invalid:ring-oklch(0.577 0.245 27.325)/20 dark:aria-invalid:border-oklch(0.577 0.245 27.325)/50 dark:aria-invalid:ring-oklch(0.577 0.245 27.325)/40 data-checked:bg-oklch(0.205 0 0) data-unchecked:bg-oklch(0.922 0 0) dark:data-unchecked:bg-oklch(0.922 0 0)/80 dark:border-oklch(1 0 0 / 10%) dark:focus-visible:border-oklch(0.556 0 0) dark:focus-visible:ring-oklch(0.556 0 0)/50 dark:aria-invalid:border-oklch(0.704 0.191 22.216) dark:aria-invalid:ring-oklch(0.704 0.191 22.216)/20 dark:dark:aria-invalid:border-oklch(0.704 0.191 22.216)/50 dark:dark:aria-invalid:ring-oklch(0.704 0.191 22.216)/40 dark:data-checked:bg-oklch(0.922 0 0) dark:data-unchecked:bg-oklch(1 0 0 / 15%) dark:dark:data-unchecked:bg-oklch(1 0 0 / 15%)/80 relative inline-flex shrink-0 items-center rounded-full border border-transparent shadow-xs transition-all outline-none after:absolute after:-inset-x-3 after:-inset-y-2 focus-visible:ring-3 aria-invalid:ring-3 data-disabled:cursor-not-allowed data-disabled:opacity-50 data-[size=default]:h-[18.4px] data-[size=default]:w-[32px] data-[size=sm]:h-[14px] data-[size=sm]:w-[24px]',
         className,
       )}
       {...props}
     >
       <SwitchPrimitive.Thumb
         data-slot="switch-thumb"
-        className={cn(
-          'pointer-events-none block size-4 rounded-full bg-white ring-0 transition-transform data-[state=checked]:translate-x-[calc(100%-2px)] data-[state=unchecked]:translate-x-0 dark:bg-neutral-950 dark:dark:data-[state=checked]:bg-neutral-900 dark:data-[state=checked]:bg-neutral-50 dark:dark:data-[state=unchecked]:bg-neutral-50 dark:data-[state=unchecked]:bg-neutral-950',
-        )}
+        className="bg-oklch(1 0 0) dark:data-checked:bg-oklch(0.985 0 0) dark:data-unchecked:bg-oklch(0.145 0 0) dark:bg-oklch(0.145 0 0) dark:dark:data-checked:bg-oklch(0.205 0 0) dark:dark:data-unchecked:bg-oklch(0.985 0 0) pointer-events-none block rounded-full ring-0 transition-transform group-data-[size=default]/switch:size-4 group-data-[size=sm]/switch:size-3 group-data-[size=default]/switch:data-checked:translate-x-[calc(100%-2px)] group-data-[size=sm]/switch:data-checked:translate-x-[calc(100%-2px)] group-data-[size=default]/switch:data-unchecked:translate-x-0 group-data-[size=sm]/switch:data-unchecked:translate-x-0"
       />
     </SwitchPrimitive.Root>
   );
