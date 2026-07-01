@@ -7,7 +7,7 @@ function Empty({ className, ...props }: React.ComponentProps<'div'>) {
     <div
       data-slot="empty"
       className={cn(
-        'flex min-w-0 flex-1 flex-col items-center justify-center gap-6 rounded-lg border-dashed p-6 text-center text-balance md:p-12',
+        'flex w-full min-w-0 flex-1 flex-col items-center justify-center gap-4 rounded-lg border-dashed p-12 text-center text-balance',
         className,
       )}
       {...props}
@@ -19,19 +19,19 @@ function EmptyHeader({ className, ...props }: React.ComponentProps<'div'>) {
   return (
     <div
       data-slot="empty-header"
-      className={cn('flex max-w-sm flex-col items-center gap-2 text-center', className)}
+      className={cn('flex max-w-sm flex-col items-center gap-2', className)}
       {...props}
     />
   );
 }
 
 const emptyMediaVariants = cva(
-  'flex shrink-0 items-center justify-center mb-2 [&_svg]:pointer-events-none [&_svg]:shrink-0',
+  'mb-2 flex shrink-0 items-center justify-center [&_svg]:pointer-events-none [&_svg]:shrink-0',
   {
     variants: {
       variant: {
         default: 'bg-transparent',
-        icon: "bg-neutral-100 text-neutral-950 flex size-10 shrink-0 items-center justify-center rounded-lg [&_svg:not([class*='size-'])]:size-6 dark:bg-neutral-800 dark:text-neutral-50",
+        icon: "flex size-10 shrink-0 items-center justify-center rounded-lg bg-oklch(0.97 0 0) text-oklch(0.145 0 0) [&_svg:not([class*='size-'])]:size-6 dark:bg-oklch(0.269 0 0) dark:text-oklch(0.985 0 0)",
       },
     },
     defaultVariants: {
@@ -70,7 +70,7 @@ function EmptyDescription({ className, ...props }: React.ComponentProps<'p'>) {
     <div
       data-slot="empty-description"
       className={cn(
-        'text-sm/relaxed text-neutral-500 dark:text-neutral-400 [&>a]:underline [&>a]:underline-offset-4 [&>a:hover]:text-neutral-900 dark:[&>a:hover]:text-neutral-50',
+        'text-oklch(0.556 0 0) [&>a:hover]:text-oklch(0.205 0 0) dark:text-oklch(0.708 0 0) dark:[&>a:hover]:text-oklch(0.922 0 0) text-sm/relaxed [&>a]:underline [&>a]:underline-offset-4',
         className,
       )}
       {...props}

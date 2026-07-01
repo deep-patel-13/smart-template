@@ -1,18 +1,19 @@
-import * as React from 'react';
-
 import { cn } from '@app/utils/className.helper';
 
 function AspectRatio({
-  ratio = 1 / 1,
+  ratio,
   className,
-  style,
   ...props
-}: React.ComponentProps<'div'> & { ratio?: number }) {
+}: React.ComponentProps<'div'> & { ratio: number }) {
   return (
     <div
       data-slot="aspect-ratio"
-      className={cn('relative w-full', className)}
-      style={{ aspectRatio: String(ratio), ...style }}
+      style={
+        {
+          '--ratio': ratio,
+        } as React.CSSProperties
+      }
+      className={cn('relative aspect-(--ratio)', className)}
       {...props}
     />
   );
