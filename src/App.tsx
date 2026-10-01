@@ -1,4 +1,4 @@
-import { Toaster } from '@app/ui/blocks/sonner';
+import { Toaster } from '@app/ui/blocks/toast';
 
 import TanstackQueryProvider from './providers/TanstackQueryProviders';
 import { Routes } from './routes';
@@ -6,8 +6,9 @@ import { Routes } from './routes';
 function App() {
   return (
     <TanstackQueryProvider>
-      <Routes />
-      <Toaster richColors position="top-right" />
+      <Toaster>
+        <Routes />
+      </Toaster>
     </TanstackQueryProvider>
   );
 }

@@ -2,9 +2,9 @@ import * as React from 'react';
 import { mergeProps } from '@base-ui/react/merge-props';
 import { useRender } from '@base-ui/react/use-render';
 import { cva, type VariantProps } from 'class-variance-authority';
+import { cn } from 'cn';
 
 import { Separator } from '@app/ui/blocks/separator';
-import { cn } from '@app/utils/className.helper';
 
 function ItemGroup({ className, ...props }: React.ComponentProps<'div'>) {
   return (
@@ -32,13 +32,13 @@ function ItemSeparator({ className, ...props }: React.ComponentProps<typeof Sepa
 }
 
 const itemVariants = cva(
-  'group/item flex w-full flex-wrap items-center rounded-md border border-oklch(0.922 0 0) text-sm transition-colors duration-100 outline-none focus-visible:border-oklch(0.708 0 0) focus-visible:ring-[3px] focus-visible:ring-oklch(0.708 0 0)/50 [a]:transition-colors [a]:hover:bg-oklch(0.97 0 0) dark:border-oklch(1 0 0 / 10%) dark:focus-visible:border-oklch(0.556 0 0) dark:focus-visible:ring-oklch(0.556 0 0)/50 dark:[a]:hover:bg-oklch(0.269 0 0)',
+  'group/item flex w-full flex-wrap items-center rounded-md border text-sm transition-colors duration-100 outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 [a]:transition-colors [a]:hover:bg-muted',
   {
     variants: {
       variant: {
         default: 'border-transparent',
-        outline: 'border-oklch(0.922 0 0) dark:border-oklch(1 0 0 / 10%)',
-        muted: 'border-transparent bg-oklch(0.97 0 0)/50 dark:bg-oklch(0.269 0 0)/50',
+        outline: 'border-border',
+        muted: 'border-transparent bg-muted/50',
       },
       size: {
         default: 'gap-3.5 px-4 py-3.5',
@@ -140,7 +140,7 @@ function ItemDescription({ className, ...props }: React.ComponentProps<'p'>) {
     <p
       data-slot="item-description"
       className={cn(
-        'text-oklch(0.556 0 0) [&>a:hover]:text-oklch(0.205 0 0) dark:text-oklch(0.708 0 0) dark:[&>a:hover]:text-oklch(0.922 0 0) line-clamp-2 text-left text-sm leading-normal font-normal group-data-[size=xs]/item:text-xs [&>a]:underline [&>a]:underline-offset-4',
+        'text-muted-foreground [&>a:hover]:text-primary line-clamp-2 text-left text-sm leading-normal font-normal group-data-[size=xs]/item:text-xs [&>a]:underline [&>a]:underline-offset-4',
         className,
       )}
       {...props}

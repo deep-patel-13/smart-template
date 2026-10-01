@@ -1,6 +1,9 @@
+'use client';
+
 import * as React from 'react';
 import { Menu as MenuPrimitive } from '@base-ui/react/menu';
 import { Menubar as MenubarPrimitive } from '@base-ui/react/menubar';
+import { cn } from 'cn';
 import { CheckIcon } from 'lucide-react';
 
 import {
@@ -18,16 +21,12 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from '@app/ui/blocks/dropdown-menu';
-import { cn } from '@app/utils/className.helper';
 
 function Menubar({ className, ...props }: MenubarPrimitive.Props) {
   return (
     <MenubarPrimitive
       data-slot="menubar"
-      className={cn(
-        'border-oklch(0.922 0 0) dark:border-oklch(1 0 0 / 10%) flex h-9 items-center gap-1 rounded-md border p-1 shadow-xs',
-        className,
-      )}
+      className={cn('flex h-9 items-center gap-1 rounded-md border p-1 shadow-xs', className)}
       {...props}
     />
   );
@@ -50,7 +49,7 @@ function MenubarTrigger({ className, ...props }: React.ComponentProps<typeof Dro
     <DropdownMenuTrigger
       data-slot="menubar-trigger"
       className={cn(
-        'hover:bg-oklch(0.97 0 0) aria-expanded:bg-oklch(0.97 0 0) dark:hover:bg-oklch(0.269 0 0) dark:aria-expanded:bg-oklch(0.269 0 0) flex items-center rounded-sm px-2 py-1 text-sm font-medium outline-hidden select-none',
+        'hover:bg-muted aria-expanded:bg-muted flex items-center rounded-sm px-2 py-1 text-sm font-medium outline-hidden select-none',
         className,
       )}
       {...props}
@@ -72,7 +71,7 @@ function MenubarContent({
       alignOffset={alignOffset}
       sideOffset={sideOffset}
       className={cn(
-        'bg-oklch(1 0 0) text-oklch(0.145 0 0) ring-oklch(0.145 0 0)/10 data-[side=bottom]:slide-in-from-top-2 data-[side=inline-end]:slide-in-from-left-2 data-[side=inline-start]:slide-in-from-right-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 dark:bg-oklch(0.205 0 0) dark:text-oklch(0.985 0 0) dark:ring-oklch(0.985 0 0)/10 min-w-36 rounded-md p-1 shadow-md ring-1 duration-100',
+        'bg-popover text-popover-foreground ring-foreground/10 data-[side=bottom]:slide-in-from-top-2 data-[side=inline-end]:slide-in-from-left-2 data-[side=inline-start]:slide-in-from-right-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 min-w-36 rounded-md p-1 shadow-md ring-1 duration-100',
         className,
       )}
       {...props}
@@ -92,7 +91,7 @@ function MenubarItem({
       data-inset={inset}
       data-variant={variant}
       className={cn(
-        "group/menubar-item focus:bg-oklch(0.97 0 0) focus:text-oklch(0.205 0 0) not-data-[variant=destructive]:focus:**:text-oklch(0.205 0 0) data-[variant=destructive]:text-oklch(0.577 0.245 27.325) data-[variant=destructive]:focus:bg-oklch(0.577 0.245 27.325)/10 data-[variant=destructive]:focus:text-oklch(0.577 0.245 27.325) dark:data-[variant=destructive]:focus:bg-oklch(0.577 0.245 27.325)/20 data-[variant=destructive]:*:[svg]:text-destructive! dark:focus:bg-oklch(0.269 0 0) dark:focus:text-oklch(0.985 0 0) dark:not-data-[variant=destructive]:focus:**:text-oklch(0.985 0 0) dark:data-[variant=destructive]:text-oklch(0.704 0.191 22.216) dark:data-[variant=destructive]:focus:bg-oklch(0.704 0.191 22.216)/10 dark:data-[variant=destructive]:focus:text-oklch(0.704 0.191 22.216) dark:dark:data-[variant=destructive]:focus:bg-oklch(0.704 0.191 22.216)/20 gap-2 rounded-sm px-2 py-1.5 text-sm data-disabled:opacity-50 data-inset:pl-8 [&_svg:not([class*='size-'])]:size-4",
+        "group/menubar-item focus:bg-accent focus:text-accent-foreground not-data-[variant=destructive]:focus:**:text-accent-foreground data-[variant=destructive]:text-destructive data-[variant=destructive]:focus:bg-destructive/10 data-[variant=destructive]:focus:text-destructive dark:data-[variant=destructive]:focus:bg-destructive/20 data-[variant=destructive]:*:[svg]:text-destructive! gap-2 rounded-sm px-2 py-1.5 text-sm data-disabled:opacity-50 data-inset:pl-8 [&_svg:not([class*='size-'])]:size-4",
         className,
       )}
       {...props}
@@ -114,7 +113,7 @@ function MenubarCheckboxItem({
       data-slot="menubar-checkbox-item"
       data-inset={inset}
       className={cn(
-        'focus:bg-oklch(0.97 0 0) focus:text-oklch(0.205 0 0) focus:**:text-oklch(0.205 0 0) dark:focus:bg-oklch(0.269 0 0) dark:focus:text-oklch(0.985 0 0) dark:focus:**:text-oklch(0.985 0 0) relative flex cursor-default items-center gap-2 rounded-md py-1.5 pr-2 pl-8 text-sm outline-hidden select-none data-disabled:pointer-events-none data-disabled:opacity-50 data-inset:pl-8 [&_svg]:pointer-events-none [&_svg]:shrink-0',
+        'focus:bg-accent focus:text-accent-foreground focus:**:text-accent-foreground relative flex cursor-default items-center gap-2 rounded-md py-1.5 pr-2 pl-8 text-sm outline-hidden select-none data-disabled:pointer-events-none data-disabled:opacity-50 data-inset:pl-8 [&_svg]:pointer-events-none [&_svg]:shrink-0',
         className,
       )}
       checked={checked}
@@ -147,7 +146,7 @@ function MenubarRadioItem({
       data-slot="menubar-radio-item"
       data-inset={inset}
       className={cn(
-        "focus:bg-oklch(0.97 0 0) focus:text-oklch(0.205 0 0) focus:**:text-oklch(0.205 0 0) dark:focus:bg-oklch(0.269 0 0) dark:focus:text-oklch(0.985 0 0) dark:focus:**:text-oklch(0.985 0 0) relative flex cursor-default items-center gap-2 rounded-md py-1.5 pr-2 pl-8 text-sm outline-hidden select-none data-disabled:pointer-events-none data-disabled:opacity-50 data-inset:pl-8 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        "focus:bg-accent focus:text-accent-foreground focus:**:text-accent-foreground relative flex cursor-default items-center gap-2 rounded-md py-1.5 pr-2 pl-8 text-sm outline-hidden select-none data-disabled:pointer-events-none data-disabled:opacity-50 data-inset:pl-8 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
         className,
       )}
       {...props}
@@ -186,7 +185,7 @@ function MenubarSeparator({
   return (
     <DropdownMenuSeparator
       data-slot="menubar-separator"
-      className={cn('bg-oklch(0.922 0 0) dark:bg-oklch(1 0 0 / 10%) -mx-1 my-1 h-px', className)}
+      className={cn('bg-border -mx-1 my-1 h-px', className)}
       {...props}
     />
   );
@@ -200,7 +199,7 @@ function MenubarShortcut({
     <DropdownMenuShortcut
       data-slot="menubar-shortcut"
       className={cn(
-        'text-oklch(0.556 0 0) group-focus/menubar-item:text-oklch(0.205 0 0) dark:text-oklch(0.708 0 0) dark:group-focus/menubar-item:text-oklch(0.985 0 0) ml-auto text-xs tracking-widest',
+        'text-muted-foreground group-focus/menubar-item:text-accent-foreground ml-auto text-xs tracking-widest',
         className,
       )}
       {...props}
@@ -224,7 +223,7 @@ function MenubarSubTrigger({
       data-slot="menubar-sub-trigger"
       data-inset={inset}
       className={cn(
-        "focus:bg-oklch(0.97 0 0) focus:text-oklch(0.205 0 0) data-open:bg-oklch(0.97 0 0) data-open:text-oklch(0.205 0 0) dark:focus:bg-oklch(0.269 0 0) dark:focus:text-oklch(0.985 0 0) dark:data-open:bg-oklch(0.269 0 0) dark:data-open:text-oklch(0.985 0 0) gap-2 rounded-sm px-2 py-1.5 text-sm data-inset:pl-8 [&_svg:not([class*='size-'])]:size-4",
+        "focus:bg-accent focus:text-accent-foreground data-open:bg-accent data-open:text-accent-foreground gap-2 rounded-sm px-2 py-1.5 text-sm data-inset:pl-8 [&_svg:not([class*='size-'])]:size-4",
         className,
       )}
       {...props}
@@ -240,7 +239,7 @@ function MenubarSubContent({
     <DropdownMenuSubContent
       data-slot="menubar-sub-content"
       className={cn(
-        'bg-oklch(1 0 0) text-oklch(0.145 0 0) ring-oklch(0.145 0 0)/10 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95 dark:bg-oklch(0.205 0 0) dark:text-oklch(0.985 0 0) dark:ring-oklch(0.985 0 0)/10 min-w-32 rounded-md p-1 shadow-lg ring-1 duration-100',
+        'bg-popover text-popover-foreground ring-foreground/10 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95 min-w-32 rounded-md p-1 shadow-lg ring-1 duration-100',
         className,
       )}
       {...props}

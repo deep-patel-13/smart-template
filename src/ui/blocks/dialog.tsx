@@ -1,9 +1,11 @@
+'use client';
+
 import * as React from 'react';
 import { Dialog as DialogPrimitive } from '@base-ui/react/dialog';
+import { cn } from 'cn';
 import { XIcon } from 'lucide-react';
 
 import { Button } from '@app/ui/blocks/button';
-import { cn } from '@app/utils/className.helper';
 
 function Dialog({ ...props }: DialogPrimitive.Root.Props) {
   return <DialogPrimitive.Root data-slot="dialog" {...props} />;
@@ -48,7 +50,7 @@ function DialogContent({
       <DialogPrimitive.Popup
         data-slot="dialog-content"
         className={cn(
-          'bg-oklch(1 0 0) text-oklch(0.145 0 0) ring-oklch(0.145 0 0)/10 data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95 dark:bg-oklch(0.205 0 0) dark:text-oklch(0.985 0 0) dark:ring-oklch(0.985 0 0)/10 fixed top-1/2 left-1/2 z-50 grid w-full max-w-[calc(100%-2rem)] -translate-x-1/2 -translate-y-1/2 gap-6 rounded-xl p-6 text-sm ring-1 duration-100 outline-none sm:max-w-md',
+          'bg-popover text-popover-foreground ring-foreground/10 data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95 fixed top-1/2 left-1/2 z-50 grid w-full max-w-[calc(100%-2rem)] -translate-x-1/2 -translate-y-1/2 gap-6 rounded-xl p-6 text-sm ring-1 duration-100 outline-none sm:max-w-md',
           className,
         )}
         {...props}
@@ -100,7 +102,7 @@ function DialogTitle({ className, ...props }: DialogPrimitive.Title.Props) {
   return (
     <DialogPrimitive.Title
       data-slot="dialog-title"
-      className={cn('leading-none font-medium', className)}
+      className={cn('font-heading leading-none font-medium', className)}
       {...props}
     />
   );
@@ -111,7 +113,7 @@ function DialogDescription({ className, ...props }: DialogPrimitive.Description.
     <DialogPrimitive.Description
       data-slot="dialog-description"
       className={cn(
-        'text-oklch(0.556 0 0) *:[a]:hover:text-oklch(0.145 0 0) dark:text-oklch(0.708 0 0) dark:*:[a]:hover:text-oklch(0.985 0 0) text-sm *:[a]:underline *:[a]:underline-offset-3',
+        'text-muted-foreground *:[a]:hover:text-foreground text-sm *:[a]:underline *:[a]:underline-offset-3',
         className,
       )}
       {...props}

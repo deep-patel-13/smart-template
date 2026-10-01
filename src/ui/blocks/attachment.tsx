@@ -2,12 +2,12 @@ import * as React from 'react';
 import { mergeProps } from '@base-ui/react/merge-props';
 import { useRender } from '@base-ui/react/use-render';
 import { cva, type VariantProps } from 'class-variance-authority';
+import { cn } from 'cn';
 
 import { Button } from '@app/ui/blocks/button';
-import { cn } from '@app/utils/className.helper';
 
 const attachmentVariants = cva(
-  'group/attachment relative flex w-fit max-w-full min-w-0 shrink-0 flex-wrap rounded-xl border border-oklch(0.922 0 0) bg-oklch(1 0 0) text-oklch(0.145 0 0) transition-colors focus-within:ring-1 focus-within:ring-oklch(0.708 0 0)/50 has-[>a,>button]:hover:bg-oklch(0.97 0 0)/50 data-[state=error]:border-oklch(0.577 0.245 27.325)/30 data-[state=idle]:border-dashed dark:border-oklch(1 0 0 / 10%) dark:bg-oklch(0.205 0 0) dark:text-oklch(0.985 0 0) dark:focus-within:ring-oklch(0.556 0 0)/50 dark:has-[>a,>button]:hover:bg-oklch(0.269 0 0)/50 dark:data-[state=error]:border-oklch(0.704 0.191 22.216)/30',
+  'group/attachment relative flex w-fit max-w-full min-w-0 shrink-0 flex-wrap rounded-xl border bg-card text-card-foreground transition-colors focus-within:ring-1 focus-within:ring-ring/50 has-[>a,>button]:hover:bg-muted/50 data-[state=error]:border-destructive/30 data-[state=idle]:border-dashed',
   {
     variants: {
       size: {
@@ -47,7 +47,7 @@ function Attachment({
 }
 
 const attachmentMediaVariants = cva(
-  "relative flex aspect-square w-10 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-oklch(0.97 0 0) text-oklch(0.145 0 0) group-data-[orientation=vertical]/attachment:w-full group-data-[size=sm]/attachment:w-8 group-data-[size=xs]/attachment:w-7 group-data-[size=xs]/attachment:rounded-md group-data-[state=error]/attachment:bg-oklch(0.577 0.245 27.325)/10 group-data-[state=error]/attachment:text-oklch(0.577 0.245 27.325) group-data-[orientation=vertical]/attachment:*:data-[slot=spinner]:size-6! [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 group-data-[orientation=vertical]/attachment:[&_svg:not([class*='size-'])]:size-6 group-data-[size=xs]/attachment:[&_svg:not([class*='size-'])]:size-3.5 dark:bg-oklch(0.269 0 0) dark:text-oklch(0.985 0 0) dark:group-data-[state=error]/attachment:bg-oklch(0.704 0.191 22.216)/10 dark:group-data-[state=error]/attachment:text-oklch(0.704 0.191 22.216)",
+  "relative flex aspect-square w-10 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-muted text-foreground group-data-[orientation=vertical]/attachment:w-full group-data-[size=sm]/attachment:w-8 group-data-[size=xs]/attachment:w-7 group-data-[size=xs]/attachment:rounded-md group-data-[state=error]/attachment:bg-destructive/10 group-data-[state=error]/attachment:text-destructive group-data-[orientation=vertical]/attachment:*:data-[slot=spinner]:size-6! [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 group-data-[orientation=vertical]/attachment:[&_svg:not([class*='size-'])]:size-6 group-data-[size=xs]/attachment:[&_svg:not([class*='size-'])]:size-3.5",
   {
     variants: {
       variant: {
@@ -108,7 +108,7 @@ function AttachmentDescription({ className, ...props }: React.ComponentProps<'sp
     <span
       data-slot="attachment-description"
       className={cn(
-        'text-oklch(0.556 0 0) group-data-[state=error]/attachment:text-oklch(0.577 0.245 27.325)/80 dark:text-oklch(0.708 0 0) dark:group-data-[state=error]/attachment:text-oklch(0.704 0.191 22.216)/80 mt-0.5 block min-w-0 truncate text-xs',
+        'text-muted-foreground group-data-[state=error]/attachment:text-destructive/80 mt-0.5 block min-w-0 truncate text-xs',
         'max-w-full',
         className,
       )}

@@ -1,7 +1,5 @@
-import * as React from 'react';
 import { ScrollArea as ScrollAreaPrimitive } from '@base-ui/react/scroll-area';
-
-import { cn } from '@app/utils/className.helper';
+import { cn } from 'cn';
 
 function ScrollArea({ className, children, ...props }: ScrollAreaPrimitive.Root.Props) {
   return (
@@ -12,7 +10,7 @@ function ScrollArea({ className, children, ...props }: ScrollAreaPrimitive.Root.
     >
       <ScrollAreaPrimitive.Viewport
         data-slot="scroll-area-viewport"
-        className="focus-visible:ring-oklch(0.708 0 0)/50 dark:focus-visible:ring-oklch(0.556 0 0)/50 size-full rounded-[inherit] transition-[color,box-shadow] outline-none focus-visible:ring-[3px] focus-visible:outline-1"
+        className="focus-visible:ring-ring/50 size-full rounded-[inherit] transition-[color,box-shadow] outline-none focus-visible:ring-[3px] focus-visible:outline-1"
       >
         {children}
       </ScrollAreaPrimitive.Viewport>
@@ -40,7 +38,7 @@ function ScrollBar({
     >
       <ScrollAreaPrimitive.Thumb
         data-slot="scroll-area-thumb"
-        className="bg-oklch(0.922 0 0) dark:bg-oklch(1 0 0 / 10%) relative flex-1 rounded-full"
+        className="bg-border relative flex-1 rounded-full"
       />
     </ScrollAreaPrimitive.Scrollbar>
   );

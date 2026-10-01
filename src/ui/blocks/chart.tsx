@@ -1,10 +1,7 @@
-'use client';
-
 import * as React from 'react';
+import { cn } from 'cn';
 import type { TooltipValueType } from 'recharts';
 import * as RechartsPrimitive from 'recharts';
-
-import { cn } from '@app/utils/className.helper';
 
 // Format: { THEME_NAME: CSS_SELECTOR }
 const THEMES = { light: '', dark: '.dark' } as const;
@@ -100,11 +97,11 @@ ${colorConfig
     const color = itemConfig.theme?.[theme as keyof typeof itemConfig.theme] ?? itemConfig.color;
     return color ? `  --color-${key}: ${color};` : null;
   })
-  .join('')}
+  .join('\n')}
 }
 `,
           )
-          .join(''),
+          .join('\n'),
       }}
     />
   );
@@ -172,7 +169,7 @@ function ChartTooltipContent({
   return (
     <div
       className={cn(
-        'border-oklch(0.922 0 0) border-oklch(0.922 0 0)/50 bg-oklch(1 0 0) dark:border-oklch(1 0 0 / 10%) dark:border-oklch(1 0 0 / 10%)/50 dark:bg-oklch(0.145 0 0) grid min-w-32 items-start gap-1.5 rounded-lg border px-2.5 py-1.5 text-xs shadow-xl',
+        'border-border/50 bg-background grid min-w-32 items-start gap-1.5 rounded-lg border px-2.5 py-1.5 text-xs shadow-xl',
         className,
       )}
     >
@@ -191,7 +188,7 @@ function ChartTooltipContent({
               <div
                 key={index}
                 className={cn(
-                  '[&>svg]:text-oklch(0.556 0 0) dark:[&>svg]:text-oklch(0.708 0 0) flex w-full flex-wrap items-stretch gap-2 [&>svg]:h-2.5 [&>svg]:w-2.5',
+                  '[&>svg]:text-muted-foreground flex w-full flex-wrap items-stretch gap-2 [&>svg]:h-2.5 [&>svg]:w-2.5',
                   indicator === 'dot' && 'items-center',
                 )}
               >
@@ -231,12 +228,12 @@ function ChartTooltipContent({
                     >
                       <div className="grid gap-1.5">
                         {nestLabel ? tooltipLabel : null}
-                        <span className="text-oklch(0.556 0 0) dark:text-oklch(0.708 0 0)">
+                        <span className="text-muted-foreground">
                           {itemConfig?.label ?? item.name}
                         </span>
                       </div>
                       {item.value != null && (
-                        <span className="text-oklch(0.145 0 0) dark:text-oklch(0.985 0 0) font-mono font-medium tabular-nums">
+                        <span className="text-foreground font-mono font-medium tabular-nums">
                           {typeof item.value === 'number'
                             ? item.value.toLocaleString()
                             : String(item.value)}
@@ -289,7 +286,7 @@ function ChartLegendContent({
             <div
               key={index}
               className={cn(
-                '[&>svg]:text-oklch(0.556 0 0) dark:[&>svg]:text-oklch(0.708 0 0) flex items-center gap-1.5 [&>svg]:h-3 [&>svg]:w-3',
+                '[&>svg]:text-muted-foreground flex items-center gap-1.5 [&>svg]:h-3 [&>svg]:w-3',
               )}
             >
               {itemConfig?.icon && !hideIcon ? (
