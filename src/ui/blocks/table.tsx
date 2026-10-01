@@ -1,8 +1,5 @@
-'use client';
-
 import * as React from 'react';
-
-import { cn } from '@app/utils/className.helper';
+import { cn } from 'cn';
 
 function Table({ className, ...props }: React.ComponentProps<'table'>) {
   return (
@@ -34,10 +31,7 @@ function TableFooter({ className, ...props }: React.ComponentProps<'tfoot'>) {
   return (
     <tfoot
       data-slot="table-footer"
-      className={cn(
-        'bg-oklch(0.97 0 0)/50 dark:bg-oklch(0.269 0 0)/50 border-t font-medium [&>tr]:last:border-b-0',
-        className,
-      )}
+      className={cn('bg-muted/50 border-t font-medium [&>tr]:last:border-b-0', className)}
       {...props}
     />
   );
@@ -48,7 +42,7 @@ function TableRow({ className, ...props }: React.ComponentProps<'tr'>) {
     <tr
       data-slot="table-row"
       className={cn(
-        'hover:bg-oklch(0.97 0 0)/50 has-aria-expanded:bg-oklch(0.97 0 0)/50 data-[state=selected]:bg-oklch(0.97 0 0) dark:hover:bg-oklch(0.269 0 0)/50 dark:has-aria-expanded:bg-oklch(0.269 0 0)/50 dark:data-[state=selected]:bg-oklch(0.269 0 0) border-b transition-colors',
+        'hover:bg-muted/50 has-aria-expanded:bg-muted/50 data-[state=selected]:bg-muted border-b transition-colors',
         className,
       )}
       {...props}
@@ -61,7 +55,7 @@ function TableHead({ className, ...props }: React.ComponentProps<'th'>) {
     <th
       data-slot="table-head"
       className={cn(
-        'text-oklch(0.145 0 0) dark:text-oklch(0.985 0 0) h-10 px-2 text-left align-middle font-medium whitespace-nowrap [&:has([role=checkbox])]:pr-0',
+        'text-foreground h-10 px-2 text-left align-middle font-medium whitespace-nowrap [&:has([role=checkbox])]:pr-0',
         className,
       )}
       {...props}
@@ -83,10 +77,10 @@ function TableCaption({ className, ...props }: React.ComponentProps<'caption'>) 
   return (
     <caption
       data-slot="table-caption"
-      className={cn('text-oklch(0.556 0 0) dark:text-oklch(0.708 0 0) mt-4 text-sm', className)}
+      className={cn('text-muted-foreground mt-4 text-sm', className)}
       {...props}
     />
   );
 }
 
-export { Table, TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, TableRow };
+export { Table, TableBody, TableCaption,TableCell, TableFooter, TableHead, TableHeader, TableRow };

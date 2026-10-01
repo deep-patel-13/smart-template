@@ -1,4 +1,4 @@
-import { cn } from '@app/utils/className.helper';
+import { cn } from 'cn';
 
 function AspectRatio({
   ratio,

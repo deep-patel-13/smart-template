@@ -1,12 +1,11 @@
 'use client';
 
 import * as ResizablePrimitive from 'react-resizable-panels';
+import { cn } from 'cn';
 
-import { cn } from '@app/utils/className.helper';
-
-function ResizablePanelGroup({ className, ...props }: ResizablePrimitive.PanelGroupProps) {
+function ResizablePanelGroup({ className, ...props }: ResizablePrimitive.GroupProps) {
   return (
-    <ResizablePrimitive.PanelGroup
+    <ResizablePrimitive.Group
       data-slot="resizable-panel-group"
       className={cn('flex h-full w-full aria-[orientation=vertical]:flex-col', className)}
       {...props}
@@ -22,22 +21,20 @@ function ResizableHandle({
   withHandle,
   className,
   ...props
-}: ResizablePrimitive.PanelResizeHandleProps & {
+}: ResizablePrimitive.SeparatorProps & {
   withHandle?: boolean;
 }) {
   return (
-    <ResizablePrimitive.PanelResizeHandle
+    <ResizablePrimitive.Separator
       data-slot="resizable-handle"
       className={cn(
-        'bg-oklch(0.922 0 0) ring-offset-oklch(1 0 0) focus-visible:ring-oklch(0.708 0 0) dark:bg-oklch(1 0 0 / 10%) dark:ring-offset-oklch(0.145 0 0) dark:focus-visible:ring-oklch(0.556 0 0) relative flex w-px items-center justify-center after:absolute after:inset-y-0 after:left-1/2 after:w-1 after:-translate-x-1/2 focus-visible:ring-1 focus-visible:outline-hidden aria-[orientation=horizontal]:h-px aria-[orientation=horizontal]:w-full aria-[orientation=horizontal]:after:left-0 aria-[orientation=horizontal]:after:h-1 aria-[orientation=horizontal]:after:w-full aria-[orientation=horizontal]:after:translate-x-0 aria-[orientation=horizontal]:after:-translate-y-1/2 [&[aria-orientation=horizontal]>div]:rotate-90',
+        'bg-border ring-offset-background focus-visible:ring-ring relative flex w-px items-center justify-center after:absolute after:inset-y-0 after:left-1/2 after:w-1 after:-translate-x-1/2 focus-visible:ring-1 focus-visible:outline-hidden aria-[orientation=horizontal]:h-px aria-[orientation=horizontal]:w-full aria-[orientation=horizontal]:after:left-0 aria-[orientation=horizontal]:after:h-1 aria-[orientation=horizontal]:after:w-full aria-[orientation=horizontal]:after:translate-x-0 aria-[orientation=horizontal]:after:-translate-y-1/2 [&[aria-orientation=horizontal]>div]:rotate-90',
         className,
       )}
       {...props}
     >
-      {withHandle && (
-        <div className="bg-oklch(0.922 0 0) dark:bg-oklch(1 0 0 / 10%) z-10 flex h-6 w-1 shrink-0 rounded-lg" />
-      )}
-    </ResizablePrimitive.PanelResizeHandle>
+      {withHandle && <div className="bg-border z-10 flex h-6 w-1 shrink-0 rounded-lg" />}
+    </ResizablePrimitive.Separator>
   );
 }
 

@@ -1,8 +1,7 @@
 import * as React from 'react';
+import { cn } from 'cn';
 import { OTPInput, OTPInputContext } from 'input-otp';
 import { MinusIcon } from 'lucide-react';
-
-import { cn } from '@app/utils/className.helper';
 
 function InputOTP({
   className,
@@ -30,7 +29,7 @@ function InputOTPGroup({ className, ...props }: React.ComponentProps<'div'>) {
     <div
       data-slot="input-otp-group"
       className={cn(
-        'has-aria-invalid:border-oklch(0.577 0.245 27.325) has-aria-invalid:ring-oklch(0.577 0.245 27.325)/20 dark:has-aria-invalid:ring-oklch(0.577 0.245 27.325)/40 dark:has-aria-invalid:border-oklch(0.704 0.191 22.216) dark:has-aria-invalid:ring-oklch(0.704 0.191 22.216)/20 dark:dark:has-aria-invalid:ring-oklch(0.704 0.191 22.216)/40 flex items-center rounded-md has-aria-invalid:ring-3',
+        'has-aria-invalid:border-destructive has-aria-invalid:ring-destructive/20 dark:has-aria-invalid:ring-destructive/40 flex items-center rounded-md has-aria-invalid:ring-3',
         className,
       )}
       {...props}
@@ -53,7 +52,7 @@ function InputOTPSlot({
       data-slot="input-otp-slot"
       data-active={isActive}
       className={cn(
-        'border-oklch(0.922 0 0) aria-invalid:border-oklch(0.577 0.245 27.325) data-[active=true]:border-oklch(0.708 0 0) data-[active=true]:ring-oklch(0.708 0 0)/50 data-[active=true]:aria-invalid:border-oklch(0.577 0.245 27.325) data-[active=true]:aria-invalid:ring-oklch(0.577 0.245 27.325)/20 dark:bg-oklch(0.922 0 0)/30 dark:data-[active=true]:aria-invalid:ring-oklch(0.577 0.245 27.325)/40 dark:border-oklch(1 0 0 / 15%) dark:aria-invalid:border-oklch(0.704 0.191 22.216) dark:data-[active=true]:border-oklch(0.556 0 0) dark:data-[active=true]:ring-oklch(0.556 0 0)/50 dark:data-[active=true]:aria-invalid:border-oklch(0.704 0.191 22.216) dark:data-[active=true]:aria-invalid:ring-oklch(0.704 0.191 22.216)/20 dark:dark:bg-oklch(1 0 0 / 15%)/30 dark:dark:data-[active=true]:aria-invalid:ring-oklch(0.704 0.191 22.216)/40 relative flex size-9 items-center justify-center border-y border-r text-sm shadow-xs transition-all outline-none first:rounded-l-md first:border-l last:rounded-r-md data-[active=true]:z-10 data-[active=true]:ring-3',
+        'border-input aria-invalid:border-destructive data-[active=true]:border-ring data-[active=true]:ring-ring/50 data-[active=true]:aria-invalid:border-destructive data-[active=true]:aria-invalid:ring-destructive/20 dark:bg-input/30 dark:data-[active=true]:aria-invalid:ring-destructive/40 relative flex size-9 items-center justify-center border-y border-r text-sm shadow-xs transition-all outline-none first:rounded-l-md first:border-l last:rounded-r-md data-[active=true]:z-10 data-[active=true]:ring-3',
         className,
       )}
       {...props}
@@ -61,7 +60,7 @@ function InputOTPSlot({
       {char}
       {hasFakeCaret && (
         <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-          <div className="animate-caret-blink bg-oklch(0.145 0 0) dark:bg-oklch(0.985 0 0) h-4 w-px duration-1000" />
+          <div className="animate-caret-blink bg-foreground h-4 w-px duration-1000" />
         </div>
       )}
     </div>
@@ -81,4 +80,4 @@ function InputOTPSeparator({ ...props }: React.ComponentProps<'div'>) {
   );
 }
 
-export { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot };
+export { InputOTP, InputOTPGroup, InputOTPSeparator,InputOTPSlot };
